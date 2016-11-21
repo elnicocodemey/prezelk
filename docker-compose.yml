@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+  elasticsearch:
+    build: elasticsearch/
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - docker_elk
+    ulimits:
+      nproc: 262144
+      nofile:
+        soft: 262144
+        hard: 262144
+  logstash:
+    build: logstash/
+#    command: logstash -f logstash/config/1-stupidPipeline.conf
+    command: logstash -f logstash/config/3-finalPipeline.conf
+    ports:
+      - "5000:5000"
+    networks:
+      - docker_elk
+    depends_on:
+      - elasticsearch
+  kibana:
+    build: kibana/
+    ports:
+      - "5601:5601"
+    networks:
+     - docker_elk
+    depends_on:
+      - elasticsearch
+
+networks:
+  docker_elk:
+    driver: bridge
