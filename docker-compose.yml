@@ -15,8 +15,8 @@ services:
         hard: 262144
   logstash:
     build: logstash/
-#    command: logstash -f logstash/config/1-stupidPipeline.conf
-    command: logstash -f logstash/config/3-finalPipeline.conf
+    command: logstash -f logstash/config/1-stupidPipeline.conf
+#    command: logstash -f logstash/config/3-finalPipeline.conf
     ports:
       - "5000:5000"
     networks:
