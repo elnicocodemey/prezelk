@@ -2,13 +2,17 @@
 présentation du trio elasticSearch/kibana/logstash
 
 
-## 1- Pour pouvoir faire tourner correctement elasticsearch vous allez devoir modifier via sysctl la mémoire allouée à votre container
+## 1a- Pour pouvoir faire tourner correctement elasticsearch vous allez devoir modifier via sysctl la mémoire allouée à votre container
 
 ==> sudo sysctl vm.max_map_count=262144
 
+## 1b- Lancer logstash via deocker 
 
+cd logstash && sudo docker built -t prezelk:logstash .
 
-## 2- build docker images
+sudo docker run -it prezelk:logstash /bin/bash
+
+## 2(Pas de suite vile chenapan)- build docker images
 
 sudo docker-compose build
 
